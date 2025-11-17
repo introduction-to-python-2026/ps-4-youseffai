@@ -1,28 +1,35 @@
-def split_before_each_uppercases(formula):
-    def split(formula):
-  my_list=[]
-  form_list=list(formula)
-  element=""
-  i=-1
-  for item in form_list:
-    
-    print(i)
-    print(my_list)
-    if item.isupper():
-      element=""
-      element+=item
-      my_list.append(element)
-      i+=1
-    if item.islower():
-      element+=item
-      my_list[i]=element
-    if item.isdigit():
-      element+=str(item)
-      my_list[i]=element
+def split_formula_into_components(formula):
+  components = []
+  current_element = ""
+  current_number = ""
 
+  for char in formula:
+    if char.isalpha():
+
+      if current_number:
+        components.append(current_number)
+        current_number = ""
+
+      if char.isupper():
   
-  return my_list
+        if current_element:
+          components.append(current_element)
+        current_element = char 
+      else: 
+        current_element += char
+    elif char.isdigit():
+
+      if current_element:
+        components.append(current_element)
+        current_element = ""
+      current_number += char 
 
 
+  if current_element:
+    components.append(current_element)
+  if current_number:
+    components.append(current_number)
+
+  return components
 def split_at_first_digit(formula):
     pass # Replace the `pass` with your code
