@@ -32,4 +32,18 @@ def split_formula_into_components(formula):
 
   return components
 def split_at_first_digit(formula):
-    pass # Replace the `pass` with your code
+    my_list = []
+  current_segment = ""
+
+  for char in formula:
+    if char.isupper():
+      if current_segment:
+        my_list.append(current_segment)
+      current_segment = char
+    else:
+      current_segment += char
+
+  if current_segment:
+    my_list.append(current_segment)
+
+  return my_list
