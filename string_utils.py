@@ -14,13 +14,13 @@ def split_at_first_digit(formula):
 def split_before_each_uppercase_manual(formula):
  if not formula:
   return []
-result = []
-current_segment = ""
-for char in formula:
- if char.isupper():         
-  if current_segment:
-   result.append(current_segment)  
-   current_segment = char
+ result = []
+ current_segment = ""
+ for char in formula:
+  if char.isupper():         
+   if current_segment:
+    result.append(current_segment)  
+    current_segment = char
    else:           
     current_segment += char
     if current_segment:
