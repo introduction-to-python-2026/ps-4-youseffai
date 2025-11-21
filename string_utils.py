@@ -1,4 +1,4 @@
-def split_at_digit(formula):
+def split_at_first_digit(formula):
  first_digit_index = -1
  for i, char in enumerate(formula):
   if char.isdigit():
