@@ -11,21 +11,39 @@ def split_at_first_digit(formula):
   return (prefix, number)
  else:
   return (formula, 1)
-def split_before_each_uppercases(formula):
+def split_before_each_uppercases(text):
+  """
+  Splits a string into a list of substrings, where each new substring 
+  starts with a capital letter, without using the 're' module.
 
-  segments = re.split(r'([A-Z])', text)
+  Args:
+    text (str): The input string to be split.
 
-  result = []
+  Returns:
+    list: A list of substrings.
+  """
+  if not text:
+    return []
 
-  start_index = 1 if segments and segments[0] == '' else 0
-  
-  for i in range(start_index, len(segments), 2):
- 
-    if i + 1 < len(segments):
-      result.append(segments[i] + segments[i+1])
+  segments = []
+  current_segment = ""
+
+  for char in text:
+    # Check if the character is a capital letter
+    if char.isupper():
+      # If the current_segment is NOT empty, 
+      # it means we've just completed a segment. 
+      if current_segment:
+        segments.append(current_segment)
+      
+      # Start a new segment with the current capital letter
+      current_segment = char
     else:
-
-      result.append(segments[i])
-
-  return result
-
+      # If it's not a capital letter, just append it to the current segment
+      current_segment += char
+  
+  # After the loop finishes, append the very last segment
+  if current_segment:
+    segments.append(current_segment)
+    
+  return segments
