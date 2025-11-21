@@ -12,26 +12,17 @@ def split_at_digit(formula):
  else:
   return (formula, 1)
 def split_before_each_uppercase_manual(formula):
-    
-    if not formula:
-        return []
-
-    result = []
-    current_segment = ""
-
-    for char in formula:
-        if char.isupper():
-            
-            if current_segment:
-                
-                result.append(current_segment)
-            
-            current_segment = char
-        else:
-            
-            current_segment += char
-
+ if not formula:
+  return []
+result = []
+current_segment = ""
+for char in formula:
+ if char.isupper():         
+  if current_segment:
+   result.append(current_segment)  
+   current_segment = char
+   else:           
+    current_segment += char
     if current_segment:
-        result.append(current_segment)
-
-    return result
+      result.append(current_segment)
+ return result
