@@ -1,49 +1,23 @@
-def split_formula_into_components(formula):
-  components = []
-  current_element = ""
-  current_number = ""
+def split_at_digit(formula):
+    
+    first_digit_index = -1
 
-  for char in formula:
-    if char.isalpha():
+   
+    for i, char in enumerate(formula):
+        if char.isdigit():
+            first_digit_index = i
+            break
 
-      if current_number:
-        components.append(current_number)
-        current_number = ""
+   
+    if first_digit_index != -1:
+       
+        prefix = formula[:first_digit_index]
 
-      if char.isupper():
-  
-        if current_element:
-          components.append(current_element)
-        current_element = char 
-      else: 
-        current_element += char
-    elif char.isdigit():
+      
+        number_str = formula[first_digit_index:]
+        number = int(number_str)
 
-      if current_element:
-        components.append(current_element)
-        current_element = ""
-      current_number += char 
-
-
-  if current_element:
-    components.append(current_element)
-  if current_number:
-    components.append(current_number)
-
-  return components
-def split_at_first_digit(formula):
-    my_list = []
-  current_segment = ""
-
-  for char in formula:
-    if char.isupper():
-      if current_segment:
-        my_list.append(current_segment)
-      current_segment = char
+        return (prefix, number)
     else:
-      current_segment += char
-
-  if current_segment:
-    my_list.append(current_segment)
-
-  return my_list
+       
+        return (formula, 1)
